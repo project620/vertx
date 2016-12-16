@@ -1,0 +1,12 @@
+[
+	{
+		"type": "pgsql",
+		"pool": {
+			"jdbcUrl": "jdbc:postgresql://localhost:5432/vertx3",
+			"username": "postgres",
+			"autoCommit": "false",
+			"password": "pgsql",
+			"minimumIdle": 10
+		}
+	}
+]

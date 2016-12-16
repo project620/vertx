@@ -1,0 +1,10 @@
+[
+	{
+		"id": "/user/validation",
+		"type": "post"
+	},
+	{
+		"id": "/user/:id",
+		"type": "get"
+	}
+]
