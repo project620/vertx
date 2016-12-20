@@ -1,12 +1,13 @@
 [
-	{
-		"type": "mysql",
-		"pool": {
-			"jdbcUrl": "jdbc:mysqll://localhost:3306/vertx3",
-			"username": "root",
-			"autoCommit": "false",
-			"password": "mysql",
-			"minimumIdle": 10
-		}
-	}
+  {
+    "type": "mysql",
+    "pool": {
+      "driverClassName": "com.mysql.jdbc.Driver",
+      "jdbcUrl": "jdbc:mysql://localhost:3306/vertx3",
+      "username": "root",
+      "autoCommit": "false",
+      "password": "mysql",
+      "minimumIdle": 10
+    }
+  }
 ]
