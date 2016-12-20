@@ -22,6 +22,7 @@ public class GetUser extends AbstractHandler {
 	public void handle(RoutingContext event) {
 		JsonObject object = new JsonObject();
 		object.put("you", "sb");
+		System.out.println("QQ唔菌坑吃大便！！！");
 		event.response().setStatusCode(200).end(object.toString());
 	}
 
