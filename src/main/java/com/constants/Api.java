@@ -10,6 +10,7 @@ package com.constants;
 public interface Api {
 	String user_validation = "/user/validation";
 	String user_get = "/user/:id";
+	String login = "/login";
 
 	interface validator {
 		String validationUserId = "name";

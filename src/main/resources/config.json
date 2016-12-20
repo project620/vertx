@@ -1,11 +1,11 @@
 [
 	{
-		"type": "pgsql",
+		"type": "mysql",
 		"pool": {
-			"jdbcUrl": "jdbc:postgresql://localhost:5432/vertx3",
-			"username": "postgres",
+			"jdbcUrl": "jdbc:mysqll://localhost:3306/vertx3",
+			"username": "root",
 			"autoCommit": "false",
-			"password": "pgsql",
+			"password": "mysql",
 			"minimumIdle": 10
 		}
 	}

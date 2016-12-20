@@ -1,21 +1,21 @@
 /**
 *2016年12月11日, jim.huang, create
 */
-package com.handler;
+package com.handler.basic;
 
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Component;
 
 import com.constants.Api;
+import com.database.ConnectionFactory;
 import com.database.DataSources;
 
-import io.vertx.core.http.HttpServerRequest;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.jdbc.JDBCClient;
-import io.vertx.ext.sql.SQLConnection;
 import io.vertx.ext.web.RoutingContext;
 
 /**
@@ -29,31 +29,26 @@ public class Validation extends AbstractHandler {
 
 	@Override
 	public void handle(RoutingContext context) {
-		HttpServerRequest request = context.request();
+		logger.info("begin to do validation");
 		JsonObject userInfo = context.getBodyAsJson();
 		String userId = userInfo.getString(Api.validator.validationUserId);
-		String sql = "select * from verxt_user where name = '" + userId + "'";
+		String sql = "select * from jim_user where userId = ?";
+		JsonArray params = new JsonArray().add(userId);
 		DataSource source = DataSources.getDefault();
 		JDBCClient client = JDBCClient.create(vertx, source);
-		client.getConnection(rs -> {
+		ConnectionFactory.queryWithParams(client, sql, params, rs -> {
 			if (rs.succeeded()) {
-				SQLConnection connection = rs.result();
-				connection.query(sql, result -> {
-					if (result.succeeded()) {
-						JsonObject object = new JsonObject();
-						int lineNumer = result.result().getNumRows();
-						object.put("result", lineNumer);
-						request.response().setStatusCode(200).end(object.toString());
-					}
-					if (result.failed()) {
-						logger.error("fail to execute sql.", result.cause());
-						request.response().setStatusCode(400).end();
-					}
-				});
-			}
-			if (rs.failed()) {
-				logger.info("fail to validate user");
-				request.response().setStatusCode(400).end();
+				JsonObject object = new JsonObject();
+				logger.info("success on user validation");
+				if (rs.result() != null) {
+					object.put("result", Boolean.TRUE);
+				} else {
+					object.put("result", Boolean.FALSE);
+				}
+				context.response().setStatusCode(200).end(object.toString());
+			} else {
+				logger.error("fail to do user validation", rs.cause());
+				context.response().setStatusCode(400).end(rs.cause().getMessage());
 			}
 		});
 	}

@@ -1,7 +1,7 @@
 /**
 *2016年12月11日, jim.huang, create
 */
-package com.handler;
+package com.handler.basic;
 
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;

@@ -6,9 +6,9 @@ package com.web;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.handler.AbstractHandler;
-import com.handler.Configuration;
-import com.handler.Validation;
+import com.handler.basic.AbstractHandler;
+import com.handler.basic.Configuration;
+import com.handler.basic.Validation;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
@@ -28,12 +28,14 @@ public class Server extends AbstractVerticle {
 	private ApplicationContext context;
 	private Logger logger = LoggerFactory.getLogger(Server.class);
 	private static final String API = "api.json";
-	private static final int port = 6666;
+	private static final int port = 8088;
 
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
 		context = new AnnotationConfigApplicationContext(Configuration.class);
-		vertx.createHttpServer().requestHandler(router()::accept).listen(port);
+		vertx.createHttpServer().requestHandler(router()::accept).listen(port, rs -> {
+			logger.info("start listening : " + port);
+		});
 	}
 
 	private Router router() {
@@ -47,7 +49,7 @@ public class Server extends AbstractVerticle {
 			AbstractHandler handler = (AbstractHandler) context.getBean(id);
 			handler.setVertx(vertx);
 			if ("post".equalsIgnoreCase(type)) {
-				router.post(id).consumes("application/json").handler(handler);
+				router.post(id).handler(handler);
 			}
 			if ("get".equalsIgnoreCase(type)) {
 				router.get(id).handler(handler);
@@ -60,9 +62,8 @@ public class Server extends AbstractVerticle {
 					logger.info(body);
 				});
 			}
-			logger.info("start route listener : " + id);
+			logger.info("start route listener : " + type + " " + id);
 		});
-		logger.info("start listening : " + port);
 		return router;
 	}
 }

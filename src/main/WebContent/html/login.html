@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+</head>
+<body>
+<p>
+	<div id="form_user_userId">
+	账号: <input type="text" id="userId" onmouseout="user_validation()"/> 
+    <span id="hello"></span>
+    </div>
+    
+    <div id="form_user_password">
+	密码: <input type="password" id="password"  /> 
+    </div>
+</p>
+<input type="button" />
+</body>
+<script>
+function user_validation(){
+	document.getElementById("hello").innerHTML="...";
+	var userId = document.getElementById("userId").value;
+	var tips = document.getElementById("hello");
+	$.ajax({
+		url: "http://localhost:8088/user/validation",
+		type:"POST",
+		data:{"name":userId},
+		dataType:"json",
+		contentType: 'application/json',
+		success: function(rs){
+			tips.innerHTML = rs;
+			},
+		error: function(){
+			tips.innerHTML = "error on check";
+		}
+		});
+	}
+
+</script>
+</html>
