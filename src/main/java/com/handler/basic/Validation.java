@@ -3,17 +3,13 @@
 */
 package com.handler.basic;
 
-import org.springframework.stereotype.Component;
-
 import com.constants.Api;
-import com.constants.Sql;
-import com.database.SqlExecutor;
-
-import io.vertx.core.json.JsonArray;
+import com.service.UserService;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author jim.huang
@@ -29,16 +25,13 @@ public class Validation extends AbstractHandler {
         logger.info("begin to do validation");
         final JsonObject userInfo = context.getBodyAsJson();
         final String userId = userInfo.getString(Api.validator.validationUserId);
-        final String sql = "select * from jim_user where userId = ?";
-        final JsonArray params = new JsonArray().add(userId);
-        final JsonObject object = new JsonObject();
-        object.put(Sql.SQL, sql);
-        object.put(Sql.PARAMS, params);
-        vertx.eventBus().send(SqlExecutor.ADDRESS_NO_TX, object, rs -> {
+        vertx.eventBus().send(UserService.GET_USER, new JsonObject().put(UserService.USER_NAME, userId), rs -> {
             if (rs.succeeded()) {
-                context.response().setStatusCode(200).end(rs.result().toString());
+                logger.info("end run user validation");
+                context.response().setStatusCode(200).end("123");
             }
             if (rs.failed()) {
+                logger.error(rs.cause());
                 context.response().setStatusCode(400).end();
             }
         });

@@ -19,7 +19,7 @@
 <form>
     <a class="green">asdasd</a>
     <div id="form_user_userId">
-        账号: <input type="text" id="userId"/>
+        账号: <input type="text" id="userId" onmouseout="user_validation()"/>
         <span id="hello"></span>
     </div>
 
@@ -34,20 +34,18 @@
 </body>
 <script>
     function user_validation() {
-        document.getElementById("hello").innerHTML = "...";
+        var tips =  document.getElementById("hello");
+        tips.innerHTML = "...";
         var userId = document.getElementById("userId").value;
         var tips = document.getElementById("hello");
+        var json = {"name": "1234"};
         $.ajax({
-            url: "http://localhost:8088/user/validation",
             type: "POST",
-            data: {"name": userId},
-            dataType: "json",
-            contentType: 'application/json',
-            success: function (rs) {
-                tips.innerHTML = rs;
-            },
-            error: function () {
-                tips.innerHTML = "error on check";
+            url:"/user/validation",
+            contentType:"application/json; charset=utf-8",
+            data:JSON.stringify(json),
+            success: function(message) {
+                tips.innerHTML = message;
             }
         });
     }

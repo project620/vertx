@@ -3,10 +3,8 @@
 */
 package com.database;
 
-import javax.sql.DataSource;
-
 import com.constants.Sql;
-
+import com.start.DataSources;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
@@ -17,6 +15,8 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.sql.ResultSet;
 import io.vertx.ext.sql.SQLConnection;
+
+import javax.sql.DataSource;
 
 /**
  * @Author jim.huang

@@ -26,7 +26,11 @@
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </logger>
-
+    <logger name="java.sql" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="com.XXX.dao" level="DEBUG"/>
     <root level="ERROR" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
