@@ -15,7 +15,7 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <title>login</title>
 </head>
-<body>
+<body background="image/back.jpg">
 <form>
     <a class="green">asdasd</a>
     <div id="form_user_userId">
@@ -41,7 +41,7 @@
         var json = {"name": "1234"};
         $.ajax({
             type: "POST",
-            url:"/user/validation",
+            url:"validation.do",
             contentType:"application/json; charset=utf-8",
             data:JSON.stringify(json),
             success: function(message) {

@@ -22,7 +22,7 @@
         </encoder>
     </appender>
 
-    <logger name="com" level="INFO" additivity="false">
+    <logger name="com.vertx3" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </logger>
@@ -30,7 +30,10 @@
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE" />
     </logger>
-    <logger name="com.XXX.dao" level="DEBUG"/>
+    <logger name="com.XXX.dao" level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE" />
+    </logger>
     <root level="ERROR" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />

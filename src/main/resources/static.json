@@ -1,0 +1,18 @@
+[
+  {
+    "request":"/image/*",
+    "path":"image"
+  },
+  {
+    "request":"/css/*",
+    "path":"css"
+  },
+  {
+    "request":"/fonts/*",
+    "path":"fonts"
+  },
+  {
+    "request":"/js/*",
+    "path":"js"
+  }
+]
