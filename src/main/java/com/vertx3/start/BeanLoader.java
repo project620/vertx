@@ -17,7 +17,7 @@ public class BeanLoader extends AbstractVerticle {
         context = new AnnotationConfigApplicationContext(Configuration.class);
         String [] names = context.getBeanDefinitionNames();
         for (String name : names) {
-            logger.info("Bean: {} is ready : " , name);
+            logger.info("Bean: {} is ready." , name);
         }
         logger.info("bean loader is ready to work");
     }

@@ -8,10 +8,6 @@
     "path":"css"
   },
   {
-    "request":"/fonts/*",
-    "path":"fonts"
-  },
-  {
     "request":"/js/*",
     "path":"js"
   }

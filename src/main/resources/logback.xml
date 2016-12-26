@@ -8,34 +8,63 @@
             <pattern>%d{HH:mm:ss.SSS} %-5level %logger{15} %msg%n</pattern>
         </encoder>
     </appender>
-
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/login.log</file>
+        <file>logs/vertx3.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/vertx-%d{yyy-MM-dd-a}.log</fileNamePattern>
+            <fileNamePattern>logs/vertx3-%d{yyy-MM-dd-a}.log</fileNamePattern>
             <compressionMode>GZ</compressionMode>
         </rollingPolicy>
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} %-5level %logger{15} %msg%n</pattern>
+            </encoder>
+        </appender>
+        <maxHistory>7</maxHistory>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-        <maxHistory>30</maxHistory>
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/error/vertx3.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/error/vertx3-%d{yyy-MM-dd}.log</fileNamePattern>
+            <compressionMode>GZ</compressionMode>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <maxHistory>7</maxHistory>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
         </encoder>
     </appender>
 
     <logger name="com.vertx3" level="DEBUG" additivity="false">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
     </logger>
     <logger name="java.sql" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
     </logger>
-    <logger name="com.XXX.dao" level="DEBUG">
+    <logger name="io.vertx" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
     </logger>
-    <root level="ERROR" additivity="false">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
+    <logger name="com.XXX.dao" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
     </root>
 </configuration>
