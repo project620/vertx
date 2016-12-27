@@ -31,11 +31,6 @@
             <fileNamePattern>logs/error/vertx3-%d{yyy-MM-dd}.log</fileNamePattern>
             <compressionMode>GZ</compressionMode>
         </rollingPolicy>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
         <maxHistory>7</maxHistory>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
@@ -45,26 +40,21 @@
     <logger name="com.vertx3" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-        <appender-ref ref="ERROR_FILE"/>
     </logger>
     <logger name="java.sql" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-        <appender-ref ref="ERROR_FILE"/>
     </logger>
     <logger name="io.vertx" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-        <appender-ref ref="ERROR_FILE"/>
     </logger>
     <logger name="com.XXX.dao" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
-        <appender-ref ref="ERROR_FILE"/>
     </logger>
-    <root level="INFO">
+    <root level="ERROR">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
         <appender-ref ref="ERROR_FILE"/>
     </root>
 </configuration>
