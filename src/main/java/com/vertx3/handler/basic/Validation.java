@@ -3,13 +3,15 @@
 */
 package com.vertx3.handler.basic;
 
-import com.vertx3.service.UserService;
+import org.springframework.stereotype.Component;
+
 import com.vertx3.constants.Api;
+import com.vertx3.service.UserService;
+
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author jim.huang

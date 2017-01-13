@@ -1,10 +1,13 @@
 /**
-*2016年12月17日, jim.huang, create
+*2016/12/17, jim.huang, create
 */
 package com.vertx3.database;
 
+import javax.sql.DataSource;
+
 import com.vertx3.constants.Sql;
 import com.vertx3.start.DataSources;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
@@ -16,11 +19,9 @@ import io.vertx.ext.jdbc.JDBCClient;
 import io.vertx.ext.sql.ResultSet;
 import io.vertx.ext.sql.SQLConnection;
 
-import javax.sql.DataSource;
-
 /**
  * @Author jim.huang
- * @Date 2016年12月17日
+ * @Date 2016/12/17
  */
 public class SqlExecutor extends AbstractVerticle {
 

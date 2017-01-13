@@ -1,19 +1,20 @@
 /**
-*2016年12月11日, jim.huang, create
+*2016骞�12鏈�11鏃�, jim.huang, create
 */
 package com.vertx3.constants;
 
 /**
  * @Author jim.huang
- * @Date 2016年12月11日
+ * @Date 2016骞�12鏈�11鏃�
  */
 public interface Api {
-	String user_validation = "validation";
-	String user_get = "/user/:id";
-	String login = "/login";
+    String user_validation = "validation";
+    String user_get = "/user/:id";
+    String login = "/login";
+    String user_signUp = "signUp";
 
-	interface validator {
-		String validationUserId = "name";
-		String validationUserPassword = "password";
-	}
+    interface validator {
+        String validationUserId = "name";
+        String validationUserPassword = "password";
+    }
 }

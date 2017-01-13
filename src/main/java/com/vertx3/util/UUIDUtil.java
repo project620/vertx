@@ -1,5 +1,5 @@
 /**
-*2016年12月11日, jim.huang, create
+*2016/12/11, jim.huang, create
 */
 package com.vertx3.util;
 
@@ -7,11 +7,11 @@ import java.util.UUID;
 
 /**
  * @Author jim.huang
- * @Date 2016年12月11日
+ * @Date 2016/12/11
  */
-public class UUIDUtils {
+public class UUIDUtil {
 	public static String getUUID() {
-		UUID uuid = UUID.randomUUID();
+		final UUID uuid = UUID.randomUUID();
 		return uuid.toString();
 	}
 }

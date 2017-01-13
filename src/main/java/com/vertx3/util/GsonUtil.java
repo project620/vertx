@@ -6,7 +6,7 @@ import com.google.gson.Gson;
  * @author jim.huang
  *
  */
-public class GsonUtils {
+public class GsonUtil {
     private static Gson gson = new Gson();
 
     public static String toJson(final Object entity) {

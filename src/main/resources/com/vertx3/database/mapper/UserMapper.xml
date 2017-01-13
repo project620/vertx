@@ -4,4 +4,7 @@
        <select id="getUserByName" parameterType="java.lang.String" resultType="java.util.HashMap">
               SELECT * FROM USER WHERE username = #{username}
        </select>
+       <select id="insert" parameterType="java.util.HashMap" resultType="java.lang.String">
+              INSERT INTO USER(ID, NAME) VALUES (#{ID}, #{NAME})
+       </select>
 </mapper>
